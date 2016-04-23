@@ -2,22 +2,59 @@
 layout: default
 ---
 
-<div class="home">
+<div class="home row">
+  <div class="col-md-8">
+    <div class="latest-article">
+      <h3>最新文章&nbsp;<a href="#"><small>(全部)</small></a></h3>
+      <hr>
+      <ul class="post-list">
+        {% for post in site.posts %}
+          <li>
+            
 
-  <h1 class="page-heading">Posts</h1>
+            <h2>
+              <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h2>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <hr>
+          </li>
+        {% endfor %}
+      </ul>
+      <hr>
+      <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
+      via RSS</a></p>
+    </div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+  </div> 
+  <div class="col-md-3">
+    <h3>Guard</h3>
+    <hr>
+    <div class="jianjie">
+      <img src="/guard/img/img-head.jpg" style="width: 140px" class="img-circle">
+    </div>
+    <p class="text-center">
+    <br>
+    Hello World
+    </p>
+    <br>
+    <hr>
+    <h3>标签</h3> 
+    <hr> 
+      <!--代码-->
+      <div class="label-mark">
+        <span class="label label-info">HTML5</span>
+        <span class="label label-primary">JS</span>
+        <span class="label label-success">壹仟字</span>
+        <span class="label label-info">《暗时间》</span>
+        <span class="label label-warning">Bootstrap</span>
+        <span class="label label-danger">错误标签</span>
+        <span class="label label-info">默认标签</span>
+        <span class="label label-warning">Bootstrap</span>
+        <span class="label label-danger">错误标签</span>
+        <span class="label label-info">默认标签</span>
+        <hr>
+        <br>
+      </div>
+  </div>
+  
 </div>
