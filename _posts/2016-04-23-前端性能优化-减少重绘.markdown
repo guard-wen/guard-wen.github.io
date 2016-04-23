@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "前端性能优化-减少重绘"
 date:   2016-04-23 21:50:50 +0800
 categories: jekyll update
 ---
