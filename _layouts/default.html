@@ -29,6 +29,36 @@
 	           $('html').animate({"scrollTop": "0px"},300); //IE,FF
 	           $('body').animate({"scrollTop": "0px"},300); //Webkit
 		    });
+
+	       var m=document.getElementsByClassName('jianjie');
+			$('.jianjie').click(function()
+			{
+				if(m[0].style.left==0)
+				{
+					$('.jianjie').animate({left:'25%',top:'1%'},100).css({'-webkit-transform':'rotate(180deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 2s'})    //右上
+				}
+				else if (m[0].style.left=='25%')
+				{
+					$('.jianjie').animate({left:'24%',top:'49%'},300).css({'-webkit-transform':'rotate(0deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 2s'})  //右下
+				}
+				else if (m[0].style.left=='24%')
+				{
+					$('.jianjie').animate({left:'-25%'},200).css({'-webkit-transform':'rotate(-180deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 2s'})    //左下
+				}
+				else if (m[0].style.left=='-25%')
+				{
+					$('.jianjie').animate({left:'-24%',top:'0%'},200).css({'-webkit-transform':'rotate(0deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 2s'})    //左上
+				}
+				else if (m[0].style.left=='-24%')
+				{
+					$('.jianjie').animate({left:'0%',top:'25%'},300).css({'-webkit-transform':'rotate(360deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 1s'})  //居中
+				}
+				else if (m[0].style.left=='0%')
+				{
+					$('.jianjie').animate({left:'25%',top:'2%'},300).css({'-webkit-transform':'rotate(180deg)','-webkit-transition':'width 0.1s, height 0.1s, -webkit-transform 2s'})  //右上
+				}
+				
+			})
 	   });
 	</script>
   </body>
