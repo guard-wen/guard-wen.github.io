@@ -1,37 +1,30 @@
 ---
 layout: default
 ---
-
 <div class="home row">
   <div class="col-md-7">
-  <br>
-    <div class="latest-article"><img class="title-icon" src="\img\new3.png" alt="new">
-      
-      <hr>
+    <div class="latest-article">
       <ul class="post-list">
-        {% for post in site.posts %}
-          <li>
-            
-
-            <h2>
-            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-            </h2>
-            <br>
-            <span><img src="\img\category.png" alt="分类" style="width: 15px;height: 15px;"><a href="#">{{ post.category}}</a></span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span><img src="\img\tag.png" alt="标签" style="width: 18px;height: 18px;"><a href="#">{{ post.tag }}</a></span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="post-meta"><img src="\img\date.png" alt="日期" style="width: 18px;height: 18px;">{{ post.date | date: "%m-%-d, %Y" }}</span>
-            <hr>
-          </li>
+        {% for category in site.categories limit:1 offset:2 %}
+          <h2>{{ category | first }}<small class="btn btn-primary" style="float: right;">{{ category | last | size }}</small></h2>
+          
+          <hr>
+          
+              {% for post in category.last %}
+                <h2 class="post-link">
+                  <span><a href="{{ post.url }}">{{ post.title }}</a></span>
+                </h2>
+                <br>
+                <span ><img src="\img\tag.png" alt="标签" style="width: 18px;height: 18px;">{{ post.tag }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span><img src="\img\date.png" alt="日期" style="width: 15px;height: 15px;">{{ post.date | date:"%b %-d, %Y"}}</span>
+                <hr>
+              {% endfor %}
         {% endfor %}
       </ul>
-      <button class="btn btn-block" type="button">more</button>
     </div>
-  </div>
+  </div> 
   <div class="col-md-4">
-    <br>
-    <img src="\img\user.png" style="width: 50px;height: 50px;" alt="Guard">
+    <h3>Guard</h3>
     <hr>
     <div class="jianjie-box">
       <div class="jianjie">
@@ -40,7 +33,7 @@ layout: default
       <h2 class="jianjie-text"></h2>
     </div>
     <br>
-    <img class="title-icon" src="\img\tag2.png" alt="标签">
+    <h3>标签</h3> 
     <hr> 
       <!--代码-->
       <div class="label-mark">

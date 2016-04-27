@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "前端性能优化-减少重绘"
+date:   2016-04-23 21:50:50 +0800
+category: code
+tag: js
+---
+
+对网站进行性能优化，一个非常有效的方法就是减少浏览器对网页的重绘次数。
+
+>#关于重绘
+在浏览器渲染引擎绘制完网页后，动态的更改DOM结构或CSS样式会引发浏览器页面的重绘。性能损耗的大小取决于动态改动范围的大小。如果是改动一个元素的背景颜色，那就只会引发这一个元素的重绘，但是如果是改动一个元素的宽高或者位置，那就会引发DOM树结构中大量的重绘，因为它影响了兄弟元素的排列。
+比如改动DOM的话要考虑改动的元素在DOM树中的深度。越深就越独立，对其他改动影响越小。而且**如果要对DOM有多次操作的话，尽量合并到一次做完而不是多次。**
+
+例:在点击a元素的时候改动该元素的背景色、字体颜色、字体大小。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>代码示例1</title>
+</head>
+<body>
+<a href="#" id="click">点击</a>
+<script>
+var click=document.getElementById('click');
+click.onclick=function()
+{ 
+    click.style.background="red";
+    click.style.color="green";
+    click.style.fontSize="36px";
+}
+</script>
+</body>
+</html>
+```
+
+在该例中，我们用js对a元素的样式进行三次更改，会进行三次重绘。三次重绘会延长网页的加载时间。
+
+**优化方法:**
+        把js的三次操作合并成一次操作。用js添加一个class给a元素,在该class中包含所有样式，这样就会把三次重绘变成一次重绘。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>代码示例2</title>
+	<style>
+		.clickStyle
+		{
+			background: red;
+			color: green;
+			font-size: 36px;
+		}
+	</style>
+</head>
+<body>
+<a href="#" id="click">点击</a>
+<script>
+var click=document.getElementById('click');
+click.onclick=function()
+{ 
+    click.className="clickStyle";
+}
+</script>
+</body>
+</html>
+```
+
+>**总结**
+网站性能优化的方式有很多种。虽然网页的重绘在轻量级的网站中影响并不是很大，但是在重量级的网站中，性能优化以及网页加载时间就显得尤为重要。网站性能不好，体验不佳，页面加载时间过长，带来的直接损失就是用户流失。所以减少浏览器对页面的重绘也是性能优化的重要方法之一。
+
+![图片来源网络](http://upload-images.jianshu.io/upload_images/1935827-6afc1e4f4484ff76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+本文笔记记录于<a>《高性能HTML5》
+
+[jekyll-docs]: http://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

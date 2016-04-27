@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "前端性能优化-减少重绘"
-date:   2016-04-23 21:50:50 +0800
-categories: jekyll update
+title:  "前端性能优化-减少重绘2"
+date:   2016-04-24 21:50:50 +0800
+category: code
+tag: css
 ---
 
 对网站进行性能优化，一个非常有效的方法就是减少浏览器对网页的重绘次数。
